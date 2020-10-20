@@ -4,7 +4,11 @@ import com.cybertek.interfaces.Course;
 
 public class Java implements Course {
 
-    OfficeHours officeHours = new OfficeHours();
+    OfficeHours officeHours;
+
+    public Java(OfficeHours officeHours) {
+        this.officeHours = officeHours;
+    }
 
     @Override
     public void getTeachingHours() {
