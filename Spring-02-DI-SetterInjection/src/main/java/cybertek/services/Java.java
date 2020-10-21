@@ -1,4 +1,4 @@
-package com.cybertek.services;
+package cybertek.services;
 
 import com.cybertek.interfaces.Course;
 import com.cybertek.interfaces.ExtraSessions;
