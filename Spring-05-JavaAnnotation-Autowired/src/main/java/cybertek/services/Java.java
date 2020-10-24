@@ -2,6 +2,7 @@ package cybertek.services;
 
 
 import cybertek.interfaces.Course;
+import cybertek.interfaces.ExtraSessions;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,8 +11,9 @@ import org.springframework.stereotype.Component;
 //@AllArgsConstructor
 public class Java implements Course {
 
+    // Field Injection
     @Autowired
-    private OfficeHours officeHours;
+    private ExtraSessions extraSessions;
 
 /*
 
@@ -36,6 +38,6 @@ public class Java implements Course {
 
     @Override
     public void getTeachingHours() {
-        System.out.println("Weekly teaching hours : " + (30 + officeHours.getHours()));
+        System.out.println("Weekly teaching hours : " + (30 + extraSessions.getHours()));
     }
 }
