@@ -27,9 +27,11 @@ public class StudentController {
         model.addAttribute("id", id);
 
         List<Integer> numbers = new ArrayList<>();
-        numbers.add(3);
-        numbers.add(56);
-        numbers.add(43);
+        numbers.add(new Random().nextInt(1000));
+        numbers.add(new Random().nextInt(1000));
+        numbers.add(new Random().nextInt(1000));
+        numbers.add(new Random().nextInt(1000));
+        numbers.add(new Random().nextInt(1000));
         model.addAttribute("numbers", numbers);
 
         // print the birthday

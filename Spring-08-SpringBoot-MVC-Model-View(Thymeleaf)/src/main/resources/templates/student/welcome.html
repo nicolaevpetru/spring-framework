@@ -28,6 +28,12 @@
 <a th:href="@{/student/welcome(id=3)}">Link2</a>
 <a th:href="@{/student/welcome(id=${student.id})}">Link3</a>
 
+<!--Iteration-->
+<ul>
+    <li th:each="number : ${numbers}" th:text="${number}"></li>
+</ul>
+
+
 </body>
 
 
