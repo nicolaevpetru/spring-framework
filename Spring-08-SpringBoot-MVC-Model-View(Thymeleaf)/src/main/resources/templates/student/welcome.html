@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <title>Student</title>
 </head>
+
 <body>
+
+<!--Text-->
 <h1 th:text="${name}"></h1>
 <h3 th:text="${course}">/</h3>
 <h2 th:text="${subject}"></h2>
@@ -13,6 +16,10 @@
 <h1 th:text="${numbers.get(0)}"></h1>
 <h1 th:text="${birthday}"></h1>
 <h2 th:text="${'Welcome to '+course+' subject '+name+', your id is '+id}"></h2>
-<h2></h2>
+<h1 th:text="${student.getFirstName()}"></h1>
+<h1 th:text="${student.lastName}"></h1>
+
 </body>
+
+
 </html>
