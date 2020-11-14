@@ -5,6 +5,7 @@
     <title>Student</title>
 </head>
 
+
 <body>
 
 <!--Text-->
@@ -18,6 +19,14 @@
 <h2 th:text="${'Welcome to '+course+' subject '+name+', your id is '+id}"></h2>
 <h1 th:text="${student.getFirstName()}"></h1>
 <h1 th:text="${student.lastName}"></h1>
+
+<!--Link-->
+<a th:href="@{https://google.com}">This is a link</a>
+<a th:href="@{/student/register}">Register</a>
+
+<!--Adding parameters to link-->
+<a th:href="@{/student/welcome(id=3)}">Link2</a>
+<a th:href="@{/student/welcome(id=${student.id})}">Link3</a>
 
 </body>
 
