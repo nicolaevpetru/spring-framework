@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,6 +21,7 @@ public class StudentController {
         String subject = "Collections";
         model.addAttribute("subject", subject);
 
+        // create some random ID
         int id = new Random().nextInt(1000);
         model.addAttribute("id", id);
 
@@ -27,8 +29,11 @@ public class StudentController {
         numbers.add(3);
         numbers.add(56);
         numbers.add(43);
-
         model.addAttribute("numbers", numbers);
+
+        // print the birthday
+        LocalDate birthday = LocalDate.now().minusYears(60);
+        model.addAttribute("birthday", birthday);
         return "student/welcome";
     }
 }
