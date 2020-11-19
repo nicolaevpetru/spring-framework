@@ -10,8 +10,9 @@ import lombok.*;
 public class Employee {
     private String firstName;
     private String lastName;
-    private String birthDay;
+    private String birthday;
     private String email;
+    private String password;
     private String address;
     private String address2;
     private String city;
