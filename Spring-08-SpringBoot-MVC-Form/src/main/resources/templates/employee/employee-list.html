@@ -30,13 +30,14 @@
             </thead>
             <tbody>
             <tr th:each="employee : ${employeeList}">
-                <td th:text="${employee.firstName}">First Name</td>
-                <td th:text="${employee.lastName}">Last Name</td>
-                <td th:text="${employee.age}">Age</td>
-                <td th:text="${employee.address}">Address</td>
-                <td th:text="${employee.city}">City</td>
-                <td th:text="${employee.state}">State</td>
-                <td th:text="${employee.zipCode}">Zip Code</td>
+                <td th:text="${employee.firstName}"></td>
+                <td th:text="${employee.lastName}"></td>
+                <td th:text="${age}"></td>
+                <td th:text="${employee.address}"></td>
+                <td th:text="${employee.city}"></td>
+                <td th:text="${employee.state}"></td>
+                <td th:text="${employee.zipCode}"></td>
+
             </tr>
             </tbody>
         </table>
