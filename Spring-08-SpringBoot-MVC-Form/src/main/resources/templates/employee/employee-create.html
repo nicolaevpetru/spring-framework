@@ -53,9 +53,11 @@
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Password</label>
                         <input type="password" class="form-control" id="inputPassword4" th:field="*{password}"
-                               placeholder="Password" required>
+                               placeholder="Password"
+                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" required>
                         <div class="invalid-feedback">
-                            Please provide a valid password.
+                            Must contain at least one number and one uppercase and lowercase letter, and at least 4 or
+                            more characters"
                         </div>
                     </div>
                 </div>
@@ -89,7 +91,7 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputZip">Zip</label>
-                        <input type="text" class="form-control" id="inputZip" th:field="*{zipCode}" required>
+                        <input type="text" class="form-control" id="inputZip" th:field="*{zipCode}" pattern="[0-9]).{5}" minlength="5" maxlength="5" required>
                         <div class="invalid-feedback">
                             Please provide a valid Zip Code.
                         </div>
