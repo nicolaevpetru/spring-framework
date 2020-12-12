@@ -15,4 +15,6 @@ public class Student {
     private String lastName;
     @Column(name = "studentEmail")
     private String email;
+    @Transient
+    private String city;
 }
