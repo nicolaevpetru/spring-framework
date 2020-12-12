@@ -1,5 +1,7 @@
 package com.ticketingapplication.entity;
 
+import com.ticketingapplication.enums.Gender;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -35,4 +37,7 @@ public class Student {
     private LocalTime localTime;
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime localDateTime;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 }
