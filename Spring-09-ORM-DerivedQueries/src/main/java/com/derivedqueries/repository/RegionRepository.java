@@ -20,4 +20,7 @@ public interface RegionRepository extends JpaRepository<Region, Integer> {
 
     // Display all regions with country name includes 'United' in order
     List<Region> findByCountryContainingOrderByCountry(String country);
+
+    // Display top 2 regions in Canada
+    List<Region> findTop2ByCountry(String country);
 }
