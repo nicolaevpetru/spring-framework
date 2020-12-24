@@ -3,9 +3,13 @@ package com.jpql.repository;
 import com.jpql.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
+
+import static org.hibernate.loader.Loader.SELECT;
 
 
 @Repository
@@ -25,4 +29,12 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     //multiple bind parameter
     @Query("SELECT e FROM Employee e WHERE e.email=?1 AND e.salary=?2")
     Employee getEmployeeByEmailAndSalary(String email, int salary);
+
+    //single named parameter
+    @Query("SELECT e FROM Employee e WHERE e.salary =:salary")
+    Optional<Employee> getEmployeeBySalary(@Param("salary") int salary);
+
+    // multiple named parameters
+    @Query("SELECT e FROM Employee e WHERE e.firstName =:name OR e.salary=:salary")
+    List<Employee> getEmployeeByFirstNameOrSalary(@Param("name") String name, @Param("salary") int salary);
 }
