@@ -5,6 +5,7 @@ import com.cinemaapp.enums.UserRole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Table(name = "account_details")
+@ToString
 public class Account extends BaseEntity {
 
     private String name;
@@ -21,14 +23,13 @@ public class Account extends BaseEntity {
     private String state;
     private String city;
     private Integer age;
-
     @Column(name = "postal_code")
     private String postalCode;
 
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.USER;
 
-    @OneToOne(mappedBy = "account", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "account")
     private User user;
 
     public Account(String name, String address, String country, String state, String city, Integer age, String postalCode, UserRole role) {

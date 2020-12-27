@@ -13,7 +13,12 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 public class Ticket extends BaseEntity {
-    private Integer seatNumber, rowNumber;
+
+    @Column(name = "seat_number")
+    private Integer seatNumber;
+
+    @Column(name = "row_number")
+    private Integer rowNumber;
 
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime dateTime;
@@ -26,9 +31,18 @@ public class Ticket extends BaseEntity {
     @JoinColumn(name = "user_account_id")
     private User user;
 
-    public Ticket(Integer seatNumber, Integer rowNumber, LocalDateTime localDateTime) {
+    public Ticket(Integer seatNumber, Integer rowNumber, LocalDateTime dateTime) {
         this.seatNumber = seatNumber;
         this.rowNumber = rowNumber;
-        this.dateTime = localDateTime;
+        this.dateTime = dateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "seatNumber=" + seatNumber +
+                ", rowNumber=" + rowNumber +
+                ", dateTime=" + dateTime +
+                '}';
     }
 }

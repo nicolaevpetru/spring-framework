@@ -7,20 +7,19 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 public class Cinema extends BaseEntity {
 
     private String name;
-    @Column(name = "sponsored_name")
-    private String sponsorName;
+    private String sponsoredName;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Location location;
 
-    public Cinema(String name, String sponsorName) {
+    public Cinema(String name, String sponsoredName) {
         this.name = name;
-        this.sponsorName = sponsorName;
+        this.sponsoredName = sponsoredName;
     }
 }

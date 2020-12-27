@@ -24,7 +24,14 @@ public class MovieCinema extends BaseEntity {
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime dateTime;
 
-    public MovieCinema(LocalDateTime localDateTime) {
-        this.dateTime = localDateTime;
+    public MovieCinema(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "MovieCinema{" +
+                "dateTime=" + dateTime +
+                '}';
     }
 }

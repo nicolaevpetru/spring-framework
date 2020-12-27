@@ -14,16 +14,15 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-@Component
+//@Component
 public class DataGenerator implements CommandLineRunner {
 
-    private final MovieRepository movieRepository;
-    private final CinemaRepository cinemaRepository;
-    private final GenreRepository genreRepository;
-    private final UserRepository userRepository;
-    private final MovieCinemaRepository movieCinemaRepository;
-    private final TicketRepository ticketRepository;
-
+    private MovieRepository movieRepository;
+    private CinemaRepository cinemaRepository;
+    private GenreRepository genreRepository;
+    private UserRepository userRepository;
+    private MovieCinemaRepository movieCinemaRepository;
+    private TicketRepository ticketRepository;
 
     public DataGenerator(MovieRepository movieRepository, CinemaRepository cinemaRepository, GenreRepository genreRepository, UserRepository userRepository, MovieCinemaRepository movieCinemaRepository, TicketRepository ticketRepository) {
         this.movieRepository = movieRepository;
@@ -61,11 +60,9 @@ public class DataGenerator implements CommandLineRunner {
     public Cinema c14 = new Cinema("Hall 2 - VILLAGE 7", "Kodak");
     public Cinema c15 = new Cinema("Hall 3 - VILLAGE 7", "MySpace");
     public Cinema c16 = new Cinema("Hall 4 - VILLAGE 7", "Channel 4");
-
     /**
      * Movie Objects.
      */
-
     public Movie m1 = new Movie("The Gentleman", LocalDate.of(2020, 1, 24), 113, MovieType.REGULAR, MovieState.ACTIVE, new BigDecimal("20.00"));
     public Movie m2 = new Movie("A Beautiful Mind", LocalDate.of(2002, 1, 04), 135, MovieType.REGULAR, MovieState.DRAFT, new BigDecimal("15.00"));
     public Movie m3 = new Movie("The Shawshank Redemption", LocalDate.of(1994, 10, 14), 142, MovieType.REGULAR, MovieState.DRAFT, new BigDecimal("35.00"));
@@ -79,7 +76,6 @@ public class DataGenerator implements CommandLineRunner {
     /**
      * Movie Cinema objects.
      */
-
     public MovieCinema mc1 = new MovieCinema(LocalDateTime.of(2020, 12, 5, 20, 00));
     public MovieCinema mc2 = new MovieCinema(LocalDateTime.of(2020, 12, 5, 19, 00));
     public MovieCinema mc3 = new MovieCinema(LocalDateTime.of(2020, 12, 5, 18, 45));
@@ -108,6 +104,7 @@ public class DataGenerator implements CommandLineRunner {
     public MovieCinema mc26 = new MovieCinema(LocalDateTime.of(2020, 12, 26, 19, 00));
     public MovieCinema mc27 = new MovieCinema(LocalDateTime.of(2020, 12, 26, 19, 45));
     public MovieCinema mc28 = new MovieCinema(LocalDateTime.of(2020, 12, 26, 22, 00));
+
     Account a1 = new Account("Josie D Story", "262  Lochmere Lane", "United States", "Kentucky", "LOUISVILLE", 35, "40289", UserRole.USER);
     Account a2 = new Account("Bernard P Fendley", "2903  Jarvis Street", "United States", "New York", "Buffalo", 28, "14211", UserRole.USER);
     Account a3 = new Account("Faith R Parsons", "4161  Alfred Drive", "United States", "New York", "Brooklyn", 47, "11226", UserRole.USER);
@@ -151,7 +148,6 @@ public class DataGenerator implements CommandLineRunner {
     Ticket t19 = new Ticket(18, 12, LocalDateTime.of(2020, 12, 8, 19, 00));
     Ticket t20 = new Ticket(5, 11, LocalDateTime.of(2020, 12, 8, 19, 00));
 
-
     @Override
     public void run(String... args) throws Exception {
         createUsers();
@@ -164,7 +160,6 @@ public class DataGenerator implements CommandLineRunner {
     /**
      * Create users.
      */
-
     private void createUsers() {
         u1.setAccount(a1);
         u2.setAccount(a2);
@@ -177,7 +172,6 @@ public class DataGenerator implements CommandLineRunner {
     /**
      * create cinemas and locations.
      */
-
     private void createCinemasAndLocations() {
         c1.setLocation(l1);
         c2.setLocation(l1);
@@ -202,7 +196,6 @@ public class DataGenerator implements CommandLineRunner {
     /**
      * Create movies and genres.
      */
-
     private void createMoviesAndGenres() {
         List<Genre> genre = Arrays.asList(g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13);
         genreRepository.saveAll(genre);
@@ -231,7 +224,6 @@ public class DataGenerator implements CommandLineRunner {
     /**
      * Shcedule a movie.
      */
-
     private void scheduleMovies() {
         mc1.setMovie(m1);
         mc1.setCinema(c1);
@@ -296,7 +288,6 @@ public class DataGenerator implements CommandLineRunner {
     /**
      * Book a movie.
      */
-
     private void bookAMovie() {
         t1.setUser(u1);
         t1.setMovieCinema(mc1);
