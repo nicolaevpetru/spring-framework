@@ -29,8 +29,8 @@ public class UserPrincipal implements UserDetails {
         });
 
         //Extract list of roles
-        user.getRoleList().forEach(r ->{
-            GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" +r);
+        user.getRoleList().forEach(r -> {
+            GrantedAuthority authority = new SimpleGrantedAuthority(r);
             authorityList.add(authority);
         });
 
@@ -65,6 +65,6 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.user.getActive()==1;
+        return this.user.getActive() == 1;
     }
 }

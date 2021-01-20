@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class HomeController {
 
-    @GetMapping("index")
-    public String index(){
+    @GetMapping("/index")
+    public String index() {
         return "/index";
+    }
+
+    @GetMapping(value = {"/login", "/"})
+    public String login() {
+        return "login";
     }
 
 }
