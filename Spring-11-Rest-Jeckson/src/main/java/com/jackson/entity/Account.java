@@ -1,6 +1,8 @@
 package com.jackson.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jackson.enums.UserRole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "account_details")
 @ToString
+@JsonIgnoreProperties(value = {"state","postalCode"},ignoreUnknown = true)
 public class Account extends BaseEntity {
 
     private String name;
@@ -30,6 +33,7 @@ public class Account extends BaseEntity {
     private UserRole role = UserRole.USER;
 
     @OneToOne(mappedBy = "account")
+    @JsonBackReference
     private User user;
 
     public Account(String name, String address, String country, String state, String city, Integer age, String postalCode, UserRole role) {
