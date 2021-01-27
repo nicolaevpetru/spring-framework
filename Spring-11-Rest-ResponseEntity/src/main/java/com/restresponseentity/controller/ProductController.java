@@ -1,8 +1,12 @@
 package com.restresponseentity.controller;
+
 import com.restresponseentity.entity.Product;
 import com.restresponseentity.service.ProductService;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,26 +31,40 @@ public class ProductController {
     public ResponseEntity<List<Product>> getProducts() {
 
         HttpHeaders responseHttpHeaders = new HttpHeaders();
-        responseHttpHeaders.set("Version","Ticketing v1");
-        responseHttpHeaders.set("Operation","Get List");
+        responseHttpHeaders.set("Version", "Ticketing v1");
+        responseHttpHeaders.set("Operation", "Get List");
         return ResponseEntity.ok()
                 .headers(responseHttpHeaders)
                 .body(productService.getProducts());
     }
 
     @PostMapping
-    public List<Product> createProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
+    public ResponseEntity<List<Product>> createProduct(@RequestBody Product product) {
+
+        List<Product> set = productService.createProduct(product);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header("Version", "1")
+                .header("Created by", "Petru")
+                .header("Operation", "Create")
+                .body(set);
     }
 
     @DeleteMapping(value = "/{id}")
-    public List<Product> deleteProduct(@PathVariable("id") long id) {
-        return productService.deleteProduct(id);
+    public ResponseEntity<List<Product>> deleteProduct(@PathVariable("id") long id) {
+        HttpHeaders responseHttpHeaders = new HttpHeaders();
+        responseHttpHeaders.set("Version", "Ticketing v1");
+        responseHttpHeaders.set("Operation", "Delete");
+        List<Product> list = productService.deleteProduct(id);
+        return new ResponseEntity<>(list, responseHttpHeaders, HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}")
-    public List<Product> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
-        return productService.updateProduct(id, product);
+    public ResponseEntity<List<Product>> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("Version", "v2");
+        map.add("Operation", "Update");
+        List<Product> list = productService.updateProduct(id, product);
+        return new ResponseEntity<>(list, map, HttpStatus.OK);
     }
-
 }
