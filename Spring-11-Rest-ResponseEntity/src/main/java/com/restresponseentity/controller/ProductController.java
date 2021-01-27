@@ -1,6 +1,7 @@
 package com.restresponseentity.controller;
 
 import com.restresponseentity.entity.Product;
+import com.restresponseentity.entity.ResponseWrapper;
 import com.restresponseentity.service.ProductService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -66,5 +67,21 @@ public class ProductController {
         map.add("Operation", "Update");
         List<Product> list = productService.updateProduct(id, product);
         return new ResponseEntity<>(list, map, HttpStatus.OK);
+    }
+
+    @GetMapping("/read")
+    public ResponseEntity<ResponseWrapper> readAllProducts() {
+        return ResponseEntity
+                .ok(new ResponseWrapper("products successfully retrieved", productService.getProducts()));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ResponseWrapper> deleteProduct2(@PathVariable("id") long id) {
+        return ResponseEntity.ok(new ResponseWrapper("product successfully deleted"));
+    }
+
+    @DeleteMapping("/delete2/{id}")
+    public ResponseEntity<ResponseWrapper> deleteProduct3(@PathVariable("id") long id) {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(new ResponseWrapper("product successfully deleted"));
     }
 }
