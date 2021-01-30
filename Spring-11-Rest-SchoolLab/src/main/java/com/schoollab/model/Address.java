@@ -1,14 +1,12 @@
 package com.schoollab.model;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.schoollab.enums.AddressType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -18,7 +16,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "teacher"}, ignoreUnknown = true)
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","teacher"},ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Address extends BaseEntity {
 
@@ -46,11 +44,11 @@ public class Address extends BaseEntity {
 
     private Integer currentTemperature;
 
-    private Integer getCurrentTemperature() {
+    private Integer getCurrentTemperature(){
         return consumeTemp(this.city);
     }
 
-    public Integer consumeTemp(String city) {
+    public Integer consumeTemp(String city){
         return 5;
     }
 
