@@ -60,7 +60,7 @@ public class WebFluxController {
         return Mono.empty();
     }
 
-    //----------------------------------WEBCLIENT EXAMPLES----------------------------
+    //---------------------------------- WEBCLIENT EXAMPLES ----------------------------
 
     @GetMapping("/flux")
     public Flux<MovieCinema> readWithWebClient() {
