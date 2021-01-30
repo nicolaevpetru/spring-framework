@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -29,21 +30,21 @@ public class ApiController {
     }
 
     @GetMapping("/teachers")
-    public List<Teacher> redAllTeachers(){
+    public List<Teacher> redAllTeachers() {
         return teacherRepository.findAll();
     }
 
     @GetMapping("/students")
-    public ResponseEntity<ResponseWrapper> readAllStudents(){
+    public ResponseEntity<ResponseWrapper> readAllStudents() {
 
         return ResponseEntity
-                .ok(new ResponseWrapper("students are successfully retrieved",studentRepository.findAll()));
+                .ok(new ResponseWrapper("students are successfully retrieved", studentRepository.findAll()));
     }
 
     @GetMapping("/parents")
-    public ResponseEntity<ResponseWrapper> readAllParents(){
+    public ResponseEntity<ResponseWrapper> readAllParents() {
 
-        ResponseWrapper responseWrapper = new ResponseWrapper(true,"Parents are successfully retrieved",
+        ResponseWrapper responseWrapper = new ResponseWrapper(true, "Parents are successfully retrieved",
                 HttpStatus.ACCEPTED.value(),
                 parentRepository.findAll());
 

@@ -7,8 +7,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.schoollab.enums.AddressType;
 import lombok.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.*;
+import java.util.Map;
 
 @Entity
 @Table(name = "address")
@@ -16,7 +18,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(value={"hibernateLazyInitializer","teacher"},ignoreUnknown = true)
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "teacher"}, ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Address extends BaseEntity {
 
@@ -44,12 +46,19 @@ public class Address extends BaseEntity {
 
     private Integer currentTemperature;
 
-    private Integer getCurrentTemperature(){
+    private Integer getCurrentTemperature() {
         return consumeTemp(this.city);
     }
 
-    public Integer consumeTemp(String city){
-        return 5;
+    public Integer consumeTemp(String city) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String BASE_URL = "http://api.weatherstack.com/current?access_key=02a009b8e3922c395677a1e85406aca6&query=";
+        String uri = BASE_URL + city;
+        Object currentWeather = restTemplate.getForObject(uri, Object.class);
+        Map<String, Object> getWeather = (Map<String, Object>) currentWeather;
+        Map<String, Object> getTemperature = (Map<String, Object>) getWeather.get("current");
+        return Integer.parseInt(getTemperature.get("temperature").toString());
     }
 
 }
