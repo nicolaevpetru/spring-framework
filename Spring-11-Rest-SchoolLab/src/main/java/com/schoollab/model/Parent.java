@@ -1,7 +1,6 @@
 package com.schoollab.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.schoollab.enums.Status;
 import lombok.AllArgsConstructor;
@@ -18,8 +17,9 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer"}, ignoreUnknown = true)
+@JsonIgnoreProperties(value={"hibernateLazyInitializer"},ignoreUnknown = true)
 public class Parent extends BaseEntity {
+
     private String firstName;
     private String lastName;
     private String email;
@@ -29,6 +29,7 @@ public class Parent extends BaseEntity {
     private String password;
 
     private LocalDate birthday;
+
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
@@ -39,4 +40,6 @@ public class Parent extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
+
+
 }

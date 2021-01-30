@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer"}, ignoreUnknown = true)
+@JsonIgnoreProperties(value={"hibernateLazyInitializer"},ignoreUnknown = true)
 public class Class extends BaseEntity {
 
     private String name;
@@ -27,4 +27,9 @@ public class Class extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
+
+
+
+
 }

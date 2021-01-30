@@ -1,7 +1,6 @@
 package com.schoollab.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.schoollab.enums.EducationLevel;
 import com.schoollab.enums.Status;
@@ -21,15 +20,16 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer"}, ignoreUnknown = true)
 public class Teacher extends BaseEntity {
+
     private String firstName;
     private String lastName;
     private String email;
     private String username;
-
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     private LocalDate birthday;
+
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
@@ -42,5 +42,4 @@ public class Teacher extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
-
 }

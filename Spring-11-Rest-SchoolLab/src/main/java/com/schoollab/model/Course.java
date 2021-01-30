@@ -1,6 +1,7 @@
 package com.schoollab.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,11 +17,13 @@ import javax.persistence.Table;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer"}, ignoreUnknown = true)
+@JsonIgnoreProperties(value={"hibernateLazyInitializer"},ignoreUnknown = true)
 public class Course extends BaseEntity {
 
     private String name;
+
     @Column(columnDefinition = "text")
     private String description;
+
 
 }

@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer"}, ignoreUnknown = true)
+@JsonIgnoreProperties(value={"hibernateLazyInitializer"},ignoreUnknown = true)
 public class Student extends BaseEntity {
 
     private String firstName;
@@ -29,11 +29,11 @@ public class Student extends BaseEntity {
     private String password;
 
     private LocalDate birthday;
+
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
     private Status status;
-
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
@@ -42,5 +42,6 @@ public class Student extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Parent parent;
+
 
 }
