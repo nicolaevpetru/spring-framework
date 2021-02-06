@@ -1,6 +1,7 @@
 package com.jwt.utils;
 
 import com.jwt.entity.User;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 @Component
 public class JWTUtils {
@@ -32,5 +34,26 @@ public class JWTUtils {
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 60 * 10)) // ==> 10 hours token validity
                 .signWith(SignatureAlgorithm.ES256, secret)
                 .compact();
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts
+                .parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    private <T> T extractClaims(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    public String extractUsername(String token) {
+        return extractClaims(token, Claims::getSubject);
+    }
+
+    public Date extractExpirations(String token) {
+        return extractClaims(token, Claims::getExpiration);
     }
 }
