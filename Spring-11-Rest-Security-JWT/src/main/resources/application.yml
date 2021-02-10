@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9090
 spring:
   application:
     name: spring-rest-security
@@ -14,11 +14,11 @@ spring:
     data: classpath:data.sql
   jpa:
     properties:
-     hibernate:
-       dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-       ddl-auto: create
-    show-sql: true
+      ddl-auto: create
+    show-sql: false
 security:
   jwt:
     secret-key: secret

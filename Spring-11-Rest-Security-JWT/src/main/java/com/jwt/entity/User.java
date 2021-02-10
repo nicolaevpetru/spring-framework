@@ -31,8 +31,8 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    private Boolean isVerified;
+
     @Enumerated(EnumType.STRING)
     private UserState state;
-
-    private Boolean isVerified;
 }

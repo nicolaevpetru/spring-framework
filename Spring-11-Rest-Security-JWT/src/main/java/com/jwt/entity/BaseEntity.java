@@ -25,7 +25,7 @@ public class BaseEntity {
     private Date createdDate;
 
     @JsonIgnore
-    @Column(name = "create_date", nullable = false)
+    @Column(name = "updated_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedDate;
 
