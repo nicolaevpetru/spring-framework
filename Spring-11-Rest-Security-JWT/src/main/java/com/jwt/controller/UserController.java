@@ -18,12 +18,12 @@ import java.util.List;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class UserController {
 
-
     @Autowired
     private UserService userService;
 
     @GetMapping("/read")
-    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
+    @PreAuthorize("hasAuthority('USER')")
+//    @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
     public ResponseEntity<ResponseWrapper> readAll() {
 
         List<User> users = userService.getAll();

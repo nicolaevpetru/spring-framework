@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Component
-public class JWTUtils {
+public class JWTUtil {
 
     @Value("${security.jwt.secret-key}")
     private String secret = "secret";
@@ -28,6 +28,7 @@ public class JWTUtils {
     }
 
     private String createToken(Map<String, Object> claims, String username) {
+
         return Jwts
                 .builder()
                 .setClaims(claims)
@@ -64,5 +65,4 @@ public class JWTUtils {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-
 }

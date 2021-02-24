@@ -35,16 +35,20 @@ public class UserService {
 
     @Transactional
     public User createUser(User user) throws ServiceException {
+
         User foundUserByEmail = readByEmail(user.getEmail());
         User foundUserByUsername = readByUsername(user.getUsername());
-        if (foundUserByEmail != null) {
-            throw new ServiceException("This user already exists, please change your email");
-        }
-        if (foundUserByUsername != null) {
-            throw new ServiceException("This user already exists, please change your username");
-        }
+
+//        if(foundUserByEmail != null) {
+//            throw new ServiceException("This user already exists, please change your email");
+//        }
+//        if(foundUserByUsername != null) {
+//            throw new ServiceException("This user already exists, please change your username");
+//        }
+
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setIsVerified(false);
+        user.setIsDeleted(false);
         return userRepository.save(user);
     }
 
@@ -57,6 +61,7 @@ public class UserService {
 
     @Transactional
     public void deleteUser(Integer id) throws ServiceException {
+
         User user = userRepository.findById(id).orElse(null);
         if (user == null) {
             throw new ServiceException("This user does not exist");
@@ -67,6 +72,7 @@ public class UserService {
 
     @Transactional
     public User resetPassword(User user) throws ServiceException {
+
         User foundUser = userRepository.findByEmail(user.getEmail()).orElse(null);
         if (foundUser == null) {
             throw new ServiceException("User with email does not exists: " + user.getEmail());

@@ -3,7 +3,8 @@ package com.jwt.service;
 
 import com.jwt.entity.User;
 import com.jwt.enums.UserState;
-import com.jwt.utils.JWTUtils;
+
+import com.jwt.utils.JWTUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,10 +21,10 @@ import java.io.IOException;
 @Service
 public class SecurityFilter extends OncePerRequestFilter {
 
-    private final JWTUtils jwtUtil;
+    private final JWTUtil jwtUtil;
     private final SecurityService securityService;
 
-    public SecurityFilter(JWTUtils jwtUtil, SecurityService securityService) {
+    public SecurityFilter(JWTUtil jwtUtil, SecurityService securityService) {
         this.jwtUtil = jwtUtil;
         this.securityService = securityService;
     }
@@ -38,7 +39,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         String username = null;
 
         if (authorizationHeader != null) {
-            token = authorizationHeader;
+            token = authorizationHeader.replace("Bearer", "");
             username = jwtUtil.extractUsername(token);
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
