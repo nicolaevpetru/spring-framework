@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -20,25 +21,20 @@ public class ProductController {
 
     private ProductService productService;
 
-    Logger logger = LoggerFactory.getLogger(ProductController.class);
-
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
-
     @GetMapping
     public List<Product> getProducts() {
-
-        logger.info("Before -> Controller:{} - Method:{} - Input Parameter :{}", "ProductController", "getProducts()");
-
         List<Product> list = productService.getProducts();
-
-        logger.info("After -> Controller:{} - Method:{} - Output Parameters:{}", "ProductController", "getProducts", list);
-
         return list;
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Product> getProduct(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(productService.getProduct(id));
+    }
 
     @PostMapping
     public ResponseEntity<List<Product>> createProduct(@RequestBody Product product) {
@@ -77,6 +73,7 @@ public class ProductController {
 
     }
 
+
     @GetMapping("/read")
     public ResponseEntity<ResponseWrapper> readAllProducts() {
         return ResponseEntity
@@ -92,5 +89,4 @@ public class ProductController {
     public ResponseEntity<ResponseWrapper> deleteProduct3(@PathVariable("id") long id) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(new ResponseWrapper("product successfully deleted"));
     }
-
 }
