@@ -4,11 +4,13 @@ package com.ticketing.aspects;
 import com.ticketing.controller.ProductController;
 import com.ticketing.entity.Product;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Aspect
@@ -110,4 +112,22 @@ public class LoggingAspect {
         logger.info("After finally -> Method : {} - results :{}", joinPoint.getSignature().toShortString());
     }
 
+
+    // around
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.PostMapping)")
+    private void anyPostProductOperation() {
+    }
+
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.PutMapping)")
+    private void anyPutProductOperation() {
+    }
+
+    @Around("anyPostProductOperation()")
+    public Object anyPostControllerAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        logger.info("Before(Method : {} - Parameters : {}", proceedingJoinPoint.getSignature().toShortString(), proceedingJoinPoint.getArgs());
+        List<Product> results = new ArrayList<>();
+        results = (List<Product>) proceedingJoinPoint.proceed();
+        logger.info("After(Method: {} - Results : {}", proceedingJoinPoint.getSignature().toShortString(), results);
+        return results;
+    }
 }
