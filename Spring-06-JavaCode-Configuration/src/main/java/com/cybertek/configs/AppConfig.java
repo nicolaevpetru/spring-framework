@@ -1,9 +1,9 @@
-package com.cybertek.configs;
+package com.ticketing.configs;
 
-import com.cybertek.interfaces.ExtraSessions;
-import com.cybertek.services.Java;
-import com.cybertek.services.OfficeHours;
-import com.cybertek.services.Selenium;
+import com.ticketing.interfaces.ExtraSessions;
+import com.ticketing.services.Java;
+import com.ticketing.services.OfficeHours;
+import com.ticketing.services.Selenium;
 import org.springframework.context.annotation.*;
 
 @Configuration

@@ -1,7 +1,7 @@
-package com.cybertek.services;
+package com.ticketing.services;
 
-import com.cybertek.interfaces.Course;
-import com.cybertek.interfaces.ExtraSessions;
+import com.ticketing.interfaces.Course;
+import com.ticketing.interfaces.ExtraSessions;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Arrays;

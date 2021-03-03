@@ -1,7 +1,7 @@
 package cybertek.services;
 
-import com.cybertek.interfaces.Course;
-import com.cybertek.interfaces.ExtraSessions;
+import com.ticketing.interfaces.Course;
+import com.ticketing.interfaces.ExtraSessions;
 import lombok.Data;
 
 @Data

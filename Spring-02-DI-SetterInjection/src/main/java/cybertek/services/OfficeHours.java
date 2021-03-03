@@ -1,6 +1,6 @@
 package cybertek.services;
 
-import com.cybertek.interfaces.ExtraSessions;
+import com.ticketing.interfaces.ExtraSessions;
 
 public class OfficeHours implements ExtraSessions {
     @Override

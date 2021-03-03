@@ -1,6 +1,6 @@
-package com.cybertek;
+package com.ticketing;
 
-import com.cybertek.interfaces.Course;
+import com.ticketing.interfaces.Course;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

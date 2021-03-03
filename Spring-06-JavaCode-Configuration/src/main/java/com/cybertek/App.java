@@ -1,7 +1,7 @@
-package com.cybertek;
+package com.ticketing;
 
-import com.cybertek.configs.AppConfig;
-import com.cybertek.interfaces.Course;
+import com.ticketing.configs.AppConfig;
+import com.ticketing.interfaces.Course;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

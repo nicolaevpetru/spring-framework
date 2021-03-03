@@ -1,4 +1,4 @@
-package com.cybertek.interfaces;
+package com.ticketing.interfaces;
 
 public interface ExtraSessions {
     int getHours();

@@ -1,6 +1,6 @@
 package cybertek.services;
 
-import com.cybertek.interfaces.Course;
+import com.ticketing.interfaces.Course;
 
 public class Selenium implements Course {
     @Override

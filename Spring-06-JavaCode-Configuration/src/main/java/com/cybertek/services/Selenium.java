@@ -1,6 +1,6 @@
-package com.cybertek.services;
+package com.ticketing.services;
 
-import com.cybertek.interfaces.Course;
+import com.ticketing.interfaces.Course;
 
 
 public class Selenium implements Course {
