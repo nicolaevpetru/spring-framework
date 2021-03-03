@@ -25,9 +25,9 @@ class UserServiceImplTest {
     @Test
     void deleteByUserName() {
 
-          userService.deleteByUserName("mike@cybertek.com");
+          userService.deleteByUserName("mike@mail.com");
 
-//        verify(userRepository).deleteByUserName("mike@cybertek.com");
+//        verify(userRepository).deleteByUserName("mike@mail.com");
           verify(userRepository,times(2)).deleteByUserName("mike@mai.com");
           verify(userRepository,atLeastOnce()).deleteByUserName("mike@mail.com");
           verify(userRepository,atMost(5)).deleteByUserName("mike@mail.com");
