@@ -20,10 +20,13 @@ class ProjectServiceImplTest {
 
     @Mock
     ProjectRepository projectRepository;
+
     @Mock
     ProjectMapper projectMapper;
+
     @InjectMocks
     ProjectServiceImpl projectService;
+
 
     @Test
     void getByProjectCode() {
@@ -36,20 +39,24 @@ class ProjectServiceImplTest {
 
         ProjectDTO projectDTO1 = projectService.getByProjectCode("PR01");
 
-//       verify(projectRepository).findByProjectCode("PR02");
         verify(projectRepository).findByProjectCode(Mockito.anyString());
         verify(projectMapper).convertToDto(Mockito.any(Project.class));
 
-        System.out.println(projectDTO1.toString());
         assertNotNull(projectDTO1);
     }
 
+
     @Test
     void getByProjectCode_exception_test() {
-        when(projectRepository.findByProjectCode("")).thenThrow(new RuntimeException("Project No Found"));
+
+        when(projectRepository.findByProjectCode("")).thenThrow(new RuntimeException("Project Not Found"));
+
         Throwable exception = assertThrows(RuntimeException.class, () -> projectService.getByProjectCode(""));
+
         verify(projectRepository).findByProjectCode(Mockito.anyString());
 
-        assertEquals(exception.getMessage(),"Project No Found");
+        assertEquals(exception.getMessage(), "Project Not Found");
+
+
     }
 }
